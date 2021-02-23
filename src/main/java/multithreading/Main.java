@@ -6,10 +6,10 @@ import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
-        MyExecutorServiceImpl executorService = new MyExecutorServiceImpl(getGenerateList(100));
-        System.out.println("executorService " + executorService.getSum());
+        MyCallableImpl callable = new MyCallableImpl(getGenerateList(1000000));
+        System.out.println("executorService " + callable.getSum());
 
-        MyForkJoinImpl forkJoin = new MyForkJoinImpl(getGenerateList(100));
+        MyForkJoinImpl forkJoin = new MyForkJoinImpl(getGenerateList(1000000));
         System.out.println("forkJoin " + forkJoin.compute());
     }
 
