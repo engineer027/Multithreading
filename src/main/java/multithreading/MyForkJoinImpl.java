@@ -28,8 +28,9 @@ public class MyForkJoinImpl extends RecursiveTask<Integer> {
 
     private Collection<MyForkJoinImpl> createSubtasks(List<Integer> list) {
         List<MyForkJoinImpl> dividedTasks = new ArrayList<>();
-        for(int i = 0; i < list.size(); i += SUB_LIST_SIZE) {
-            dividedTasks.add(new MyForkJoinImpl(new ArrayList<>(list.subList(i, Math.min(list.size(), i + SUB_LIST_SIZE)))));
+        for (int i = 0; i < list.size(); i += SUB_LIST_SIZE) {
+            dividedTasks.add(new MyForkJoinImpl(new ArrayList<>(list.subList(i,
+                    Math.min(list.size(), i + SUB_LIST_SIZE)))));
         }
         return dividedTasks;
     }

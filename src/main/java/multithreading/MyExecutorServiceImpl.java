@@ -3,9 +3,9 @@ package multithreading;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public class MyExecutorServiceImpl {
@@ -18,7 +18,7 @@ public class MyExecutorServiceImpl {
 
     private List<List<Integer>> getSublist(List<Integer> list) {
         List<List<Integer>> parts = new ArrayList<>();
-        for(int i = 0; i < list.size(); i += SUB_LIST_SIZE) {
+        for (int i = 0; i < list.size(); i += SUB_LIST_SIZE) {
             parts.add(new ArrayList<>(list.subList(i, Math.min(list.size(), i + SUB_LIST_SIZE))));
 
         }
