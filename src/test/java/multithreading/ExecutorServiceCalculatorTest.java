@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyForkJoinImplTest {
+public class ExecutorServiceCalculatorTest {
     private List<Integer> list;
 
     @Before
@@ -22,8 +22,9 @@ public class MyForkJoinImplTest {
         list.add(4);
         list.add(10);
         list.add(0);
-        MyForkJoinImpl forkJoin = new MyForkJoinImpl(list);
-        Integer compute = forkJoin.compute();
+        ExecutorServiceCalculator executorServiceCalculator =
+                new ExecutorServiceCalculator(list);
+        Integer compute = executorServiceCalculator.getSum(100);
         Assert.assertEquals(20, compute.intValue());
     }
 
@@ -34,9 +35,10 @@ public class MyForkJoinImplTest {
         list.add(-4);
         list.add(-10);
         list.add(0);
-        MyForkJoinImpl forkJoin = new MyForkJoinImpl(list);
-        Integer compute = forkJoin.compute();
-        Assert.assertEquals(-20, compute.intValue());;
+        ExecutorServiceCalculator executorServiceCalculator =
+                new ExecutorServiceCalculator(list);
+        Integer compute = executorServiceCalculator.getSum(100);
+        Assert.assertEquals(-20, compute.intValue());
     }
 
     @Test
@@ -46,15 +48,17 @@ public class MyForkJoinImplTest {
         list.add(-4);
         list.add(10);
         list.add(0);
-        MyForkJoinImpl forkJoin = new MyForkJoinImpl(list);
-        Integer compute = forkJoin.compute();
+        ExecutorServiceCalculator executorServiceCalculator =
+                new ExecutorServiceCalculator(list);
+        Integer compute = executorServiceCalculator.getSum(100);
         Assert.assertEquals(0, compute.intValue());
     }
 
     @Test
     public void nullNumbers() {
-        MyForkJoinImpl forkJoin = new MyForkJoinImpl(list);
-        Integer compute = forkJoin.compute();
+        ExecutorServiceCalculator executorServiceCalculator =
+                new ExecutorServiceCalculator(list);
+        Integer compute = executorServiceCalculator.getSum(100);
         Assert.assertEquals(0, compute.intValue());
     }
 
@@ -62,4 +66,5 @@ public class MyForkJoinImplTest {
     public void clearList() {
         list.clear();
     }
+
 }

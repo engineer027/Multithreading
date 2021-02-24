@@ -7,8 +7,8 @@ import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
 
 public class MyForkJoinImpl extends RecursiveTask<Integer> {
-    private static final int SUB_LIST_SIZE = 10;
-    private static final int THRESHOLD = 1000000;
+    private static final int SUB_LIST_SIZE = 100;
+    private static final int THRESHOLD = 100000;
     private List<Integer> list;
 
     public MyForkJoinImpl(List<Integer> list) {
@@ -21,9 +21,8 @@ public class MyForkJoinImpl extends RecursiveTask<Integer> {
             return ForkJoinTask.invokeAll(createSubtasks(list)).stream()
                     .mapToInt(ForkJoinTask::join)
                     .sum();
-        } else {
-            return processing();
         }
+        return processing();
     }
 
     private Collection<MyForkJoinImpl> createSubtasks(List<Integer> list) {
