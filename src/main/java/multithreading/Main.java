@@ -2,10 +2,11 @@ package multithreading;
 
 public class Main {
     public static void main(String[] args) {
-        Counter counter = new Counter();
-        Thread myThread = new MyThreadImpl(counter);
-        Thread myRunnable = new Thread(new MyRunnableImpl(counter));
-        myThread.start();
-        myRunnable.start();
+        ExecutorServiceCalculator executorServiceCalculator =
+                new ExecutorServiceCalculator(ListOfNumbersCreator.getGenerateList(1000000));
+        System.out.println("executorService " + executorServiceCalculator.getSum(100));
+
+        MyForkJoinImpl forkJoin = new MyForkJoinImpl(ListOfNumbersCreator.getGenerateList(1000000));
+        System.out.println("forkJoin " + forkJoin.compute());
     }
 }
